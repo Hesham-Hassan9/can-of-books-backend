@@ -18,7 +18,7 @@ const { bookHandler, createHandler, deleteHandler,} = require("./models/bookCont
 server.get('/', homeRouteHandler);
 server.get('/Book', bookHandler);
 server.post('/create-book', createHandler);
-server.delete('/delete-book', deleteHandler);
+server.delete('/delete-book/:bookID', deleteHandler);
 server.get('*', notFoundHandler);
 
 // Function Handlers
