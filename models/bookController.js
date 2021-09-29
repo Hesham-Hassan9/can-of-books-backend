@@ -13,15 +13,18 @@ let bookHandler = (req, res) => {
 }
 
 let createHandler = async  (req, res) => {
-    let { title1, author1, description1, status1, email1} = req.body;
-    await   books.create({
-      title: title1,
-      author: author1,
-      description: description1,
-      status: status1,
-      email: email1
-    })
-      books.find({email:email1}).then(data => {
+    let { title, author, description, status, email} = req.body;
+    // await   books.create({
+    //   title: title1,
+    //   author: author1,
+    //   description: description1,
+    //   status: status1,
+    //   email: email1
+    // })
+
+    await   books.create(req.body)
+
+      books.find({email:email}).then(data => {
         res.status(200).json(data);
     }).catch((error) => {
         res.status(500).send('error there is no recived data');
@@ -30,7 +33,8 @@ let createHandler = async  (req, res) => {
 
 let deleteHandler = (req, res) => {
 
-    let id = req.query.id;
+    // let id = req.query.id;
+    let id = req.params.bookID;
     console.log(id);
     let email1 = req.query.email;
     console.log(email1);
